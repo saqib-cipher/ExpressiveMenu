@@ -12,6 +12,11 @@ android {
         consumerProguardFiles 'consumer-rules.pro'
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,6 +33,16 @@ android {
         singleVariant('release') {
             withSourcesJar()
         }
+    }
+}
+
+tasks.register('exportJar', Jar) {
+    archiveBaseName = 'expressivemenu'
+    dependsOn 'assembleRelease'
+    from {
+        zipTree(file("${layout.buildDirectory.get()}/outputs/aar/expressivemenu-release.aar")).matching {
+            include 'classes.jar'
+        }.collect { zipTree(it) }
     }
 }
 
