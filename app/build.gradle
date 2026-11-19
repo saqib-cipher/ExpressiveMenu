@@ -1,0 +1,20 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.grafixlab.expressivemenu.demo'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.grafixlab.expressivemenu.demo'
+        minSdk 21
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+    }
+}
+
+dependencies {
+    implementation project(':expressivemenu')
+}
