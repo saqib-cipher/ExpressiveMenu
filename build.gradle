@@ -2,3 +2,18 @@ plugins {
     id 'com.android.application' version '8.7.3' apply false
     id 'com.android.library' version '8.7.3' apply false
 }
+
+subprojects {
+    afterEvaluate { subproj ->
+        if (subproj.plugins.hasPlugin('com.android.application')) {
+            rootProject.tasks.register('printVersion') {
+                doLast {
+                    def vc = subproj.android.defaultConfig.versionCode
+                    def vn = subproj.android.defaultConfig.versionName
+                    println "VERSION_CODE=${vc}"
+                    println "VERSION_NAME=${vn}"
+                }
+            }
+        }
+    }
+}

@@ -32,17 +32,25 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Extract Version Info
+      - name: Extract Version Info from Gradle
         id: version_info
         run: |
-          VERSION_CODE=$(grep '^VERSION_CODE=' gradle.properties | cut -d'=' -f2 | tr -d ' \r\n')
-          VERSION_NAME=$(grep '^VERSION_NAME=' gradle.properties | cut -d'=' -f2 | tr -d ' \r\n')
-          if [ -z "$VERSION_CODE" ]; then VERSION_CODE="1"; fi
-          if [ -z "$VERSION_NAME" ]; then VERSION_NAME="1.0.0"; fi
+          VERSION_OUTPUT=$(./gradlew printVersion -q)
+          VERSION_CODE=$(echo "$VERSION_OUTPUT" | grep '^VERSION_CODE=' | cut -d'=' -f2 | tr -d ' \r\n')
+          VERSION_NAME=$(echo "$VERSION_OUTPUT" | grep '^VERSION_NAME=' | cut -d'=' -f2 | tr -d ' \r\n')
+
+          if [ -z "$VERSION_CODE" ]; then
+            VERSION_CODE="1"
+          fi
+          if [ -z "$VERSION_NAME" ]; then
+            VERSION_NAME="1.0.0"
+          fi
+
           TAG_NAME="v${VERSION_NAME}"
           echo "version_code=${VERSION_CODE}" >> $GITHUB_OUTPUT
           echo "version_name=${VERSION_NAME}" >> $GITHUB_OUTPUT
           echo "tag_name=${TAG_NAME}" >> $GITHUB_OUTPUT
+          echo "Extracted Version Code: ${VERSION_CODE}, Version Name: ${VERSION_NAME}, Tag: ${TAG_NAME}"
 
       - name: Check if Tag or Release Exists
         id: check_release
@@ -87,7 +95,7 @@ jobs:
           body: |
             ## ExpressiveMenu v${{ steps.version_info.outputs.version_name }} (Version Code: ${{ steps.version_info.outputs.version_code }})
 
-            Automated release triggered by version code / version name update.
+            Automated release triggered by version change in Gradle.
 
             ### Included Artifacts
             - **Library AAR**: `expressivemenu-${{ steps.version_info.outputs.version_name }}.aar`
