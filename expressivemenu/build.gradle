@@ -36,8 +36,14 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'com.github.cipher'
+                groupId = 'com.github.saqib-cipher'
                 artifactId = 'expressivemenu'
+                version = project.hasProperty('VERSION_NAME') ? project.property('VERSION_NAME') : '1.0.0'
+            }
+            expressiveMenuRepo(MavenPublication) {
+                from components.release
+                groupId = 'com.github.saqib-cipher'
+                artifactId = 'ExpressiveMenu'
                 version = project.hasProperty('VERSION_NAME') ? project.property('VERSION_NAME') : '1.0.0'
             }
         }

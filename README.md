@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Min SDK](https://img.shields.io/badge/Min%20SDK-21%2B-brightgreen.svg)](https://developer.android.com/about/dashboards)
-[![JitPack](https://jitpack.io/v/cipher/ExpressiveMenu.svg)](https://jitpack.io/#cipher/ExpressiveMenu)
+[![JitPack](https://jitpack.io/v/saqib-cipher/ExpressiveMenu.svg)](https://jitpack.io/#saqib-cipher/ExpressiveMenu)
 
 A single-file, zero-dependency popup / dropdown menu for Android built for the native View system. ExpressiveMenu brings Material 3 Expressive-inspired segmented menu rows, theme styling, optional frosted glass blur, expandable submenus, descriptions, trailing content, single-choice selection, checkboxes, custom views, spring animations, and background dimming.
 
@@ -18,7 +18,7 @@ A single-file, zero-dependency popup / dropdown menu for Android built for the n
 - **Inline Submenus**: Tapping a submenu item smoothly expands its children inline while changing the parent into a selected pill.
 - **Single Choice & Checkboxes**: Built-in support for single-choice radio selection and animated squircle checkboxes.
 - **Smart Positioning & Positioning Offset**: Automatically detects screen boundaries and positions above or below the anchor view with spring entrance and quick exit animations.
-- **Zero External Dependencies**: Pure Java implementation using standard Android framework APIs (Min SDK 21+). Compatible with both Java and Kotlin projects.
+- **Zero External Dependencies**: Pure Java implementation using standard Android framework APIs (Min SDK 21+). Compatible with Sketchware Pro, Java, and Kotlin projects.
 
 ---
 
@@ -39,13 +39,15 @@ dependencyResolutionManagement {
 }
 ```
 
-Add the dependency to your app module's `build.gradle`:
+Add the dependency to your app or Sketchware Pro project:
 
 ```groovy
 dependencies {
-    implementation 'com.github.cipher:ExpressiveMenu:1.0.0'
+    implementation 'com.github.saqib-cipher:ExpressiveMenu:1.0.0'
 }
 ```
+
+*(Note: `com.github.saqib-cipher.ExpressiveMenu:expressivemenu:1.0.0` is also supported).*
 
 ### 2. Via Project Module
 

@@ -99,7 +99,7 @@ jobs:
                 maven { url 'https://jitpack.io' }
             }
             dependencies {
-                implementation 'com.github.cipher:ExpressiveMenu:v${{ steps.version_info.outputs.version_name }}'
+                implementation 'com.github.saqib-cipher:ExpressiveMenu:v${{ steps.version_info.outputs.version_name }}'
             }
             ```
           files: |
