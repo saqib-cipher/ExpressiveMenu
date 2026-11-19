@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.grafixlab.expressivemenu.ExpressiveMenu;
+import com.cipher.expressivemenu.ExpressiveMenu;
 
 public class MainActivity extends Activity {
     private TextView status;

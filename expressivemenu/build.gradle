@@ -1,12 +1,45 @@
 plugins {
     id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
-    namespace 'com.grafixlab.expressivemenu'
+    namespace 'com.cipher.expressivemenu'
     compileSdk 35
 
     defaultConfig {
         minSdk 21
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.cipher'
+                artifactId = 'expressivemenu'
+                version = project.hasProperty('VERSION_NAME') ? project.property('VERSION_NAME') : '1.0.0'
+            }
+        }
     }
 }

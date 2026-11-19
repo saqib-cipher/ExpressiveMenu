@@ -1,4 +1,7 @@
-jitpack:
-  build:
-    commands:
-      - ./gradlew :expressivemenu:assembleRelease
+jdk:
+  - openjdk17
+before_install:
+  - chmod +x gradlew
+build:
+  commands:
+    - ./gradlew :expressivemenu:publishToMavenLocal

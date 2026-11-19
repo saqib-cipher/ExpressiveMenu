@@ -1,5 +1,5 @@
 /*
- * ExpressiveMenu  -  GrafixLab                                                       v3
+ * ExpressiveMenu  -  Cipher                                                         v3
  * Single-file, zero-dependency popup / dropdown menu for Android (pure Java, View system).
  *
  *  STYLES
@@ -17,7 +17,6 @@
  *  - Smart positioning, spring enter, quick exit
  *
  * Min SDK 21. Only android.* framework classes. No lambdas (works in Sketchware Pro).
- * Change the package com.my.newproject;
  *
  * QUICK START
  *
@@ -38,7 +37,7 @@
  *       })
  *       .show(anchorView);
  */
-package com.grafixlab.expressivemenu;
+package com.cipher.expressivemenu;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -917,7 +916,7 @@ public class ExpressiveMenu {
                 if (!(c instanceof ItemRow)) continue;
                 c.setAlpha(0f);
                 c.setTranslationY(-dp * 12f);
-                c.animate().alpha(1f).translationY(0f).setStartDelay(50 + k * 32L).setDuration(320)
+                c.animate().alpha(1f).translationY(0f).scaleX(1f).scaleY(1f).setStartDelay(50 + k * 32L).setDuration(320)
                         .setInterpolator(new DecelerateInterpolator(1.6f)).start();
                 k++;
             }
