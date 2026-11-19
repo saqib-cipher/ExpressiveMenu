@@ -2,7 +2,8 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Min SDK](https://img.shields.io/badge/Min%20SDK-21%2B-brightgreen.svg)](https://developer.android.com/about/dashboards)
-[![JitPack](https://jitpack.io/v/cipher/ExpressiveMenu.svg)](https://jitpack.io/#cipher/ExpressiveMenu)
+[![](https://jitpack.io/v/saqib-cipher/ExpressiveMenu.svg)](https://jitpack.io/#saqib-cipher/ExpressiveMenu)
+
 
 A single-file, zero-dependency popup / dropdown menu for Android built for the native View system. ExpressiveMenu brings Material 3 Expressive-inspired segmented menu rows, theme styling, optional frosted glass blur, expandable submenus, descriptions, trailing content, single-choice selection, checkboxes, custom views, spring animations, and background dimming.
 
