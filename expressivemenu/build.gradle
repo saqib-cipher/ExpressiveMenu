@@ -38,12 +38,8 @@ android {
 
 tasks.register('exportJar', Jar) {
     archiveBaseName = 'expressivemenu'
-    dependsOn 'assembleRelease'
-    from {
-        zipTree(file("${layout.buildDirectory.get()}/outputs/aar/expressivemenu-release.aar")).matching {
-            include 'classes.jar'
-        }.collect { zipTree(it) }
-    }
+    dependsOn 'compileReleaseJavaWithJavac'
+    from layout.buildDirectory.dir("intermediates/javac/release/compileReleaseJavaWithJavac/classes")
 }
 
 afterEvaluate {
