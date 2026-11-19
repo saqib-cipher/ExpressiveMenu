@@ -11,7 +11,7 @@ android {
         minSdk 21
         targetSdk 35
         versionCode project.hasProperty('VERSION_CODE') ? project.property('VERSION_CODE').toInteger() : 1
-        versionName project.hasProperty('VERSION_NAME') ? project.property('VERSION_NAME') : '1.0.0'
+        versionName project.hasProperty('VERSION_NAME') ? project.property('VERSION_NAME') : '1.0.1'
     }
 
     buildTypes {
