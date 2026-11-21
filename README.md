@@ -43,7 +43,7 @@ Add the dependency to your app or Sketchware Pro project:
 
 ```groovy
 dependencies {
-    implementation 'com.github.saqib-cipher:ExpressiveMenu:1.0.0'
+    implementation 'com.github.saqib-cipher:ExpressiveMenu:1.3.0'
 }
 ```
 
