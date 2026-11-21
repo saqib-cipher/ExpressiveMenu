@@ -10,8 +10,8 @@ android {
         applicationId 'com.grafixlab.expressivemenu.demo'
         minSdk 21
         targetSdk 35
-        versionCode project.hasProperty('VERSION_CODE') ? project.property('VERSION_CODE').toInteger() : 3
-        versionName project.hasProperty('VERSION_NAME') ? project.property('VERSION_NAME') : '1.2.0'
+        versionCode project.hasProperty('VERSION_CODE') ? project.property('VERSION_CODE').toInteger() : 4
+        versionName project.hasProperty('VERSION_NAME') ? project.property('VERSION_NAME') : '1.3.0'
     }
 
     buildTypes {

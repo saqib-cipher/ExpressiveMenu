@@ -63,7 +63,6 @@ import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Region;
 import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -330,6 +329,8 @@ public class ExpressiveMenu {
     private boolean singleChoice, dismissOnClick = true, haptics = true, tintIcons = true;
     private boolean animations = true, submenuExclusive = false, showSelectedCheck = false;
     private int blurRadiusDp = 22, minWidthDp = 220, maxWidthDp = 320, itemHeightDp = 56, descriptionLines = 2;
+    private boolean maxPopupMenuHeightEnabled = false;
+    private int maxPopupMenuHeightDp = 420;
     private int offXdp = 0, offYdp = 4, gravity = Gravity.START;
     private float itemOpacity = 0.46f, scrimDim = 0f;
     private Typeface typeface;
@@ -404,6 +405,10 @@ public class ExpressiveMenu {
     public ExpressiveMenu setHapticsEnabled(boolean h) { haptics = h; return this; }
     public ExpressiveMenu setMenuWidth(int minDp, int maxDp) { minWidthDp = minDp; maxWidthDp = maxDp; return this; }
     public ExpressiveMenu setItemHeight(int dp) { itemHeightDp = dp; return this; }
+    /** Enable or disable a maximum popup height (default disabled). When enabled, the menu becomes scrollable if its content exceeds the limit. */
+    public ExpressiveMenu setMaxPopupMenuHeight(boolean enabled) { maxPopupMenuHeightEnabled = enabled; return this; }
+    /** Set the maximum popup height in dp and enable the limit. */
+    public ExpressiveMenu setMaxPopupMenuHeight(int dp) { maxPopupMenuHeightDp = Math.max(1, dp); maxPopupMenuHeightEnabled = true; return this; }
     /** Max lines of every item description (default 2; per-item override via Item.description(text, lines)). */
     public ExpressiveMenu setDescriptionMaxLines(int lines) { descriptionLines = Math.max(1, lines); return this; }
     /** Animated check mark at the end of the selected item (nice with single choice). */
@@ -1006,8 +1011,12 @@ public class ExpressiveMenu {
             int w = MeasureSpec.getSize(wSpec), h = MeasureSpec.getSize(hSpec);
             setMeasuredDimension(w, h);
             int m = dpi(8);
+            int availableHeight = Math.max(0, h - 2 * m);
+            int panelMaxHeight = maxPopupMenuHeightEnabled
+                    ? Math.min(availableHeight, dpi(maxPopupMenuHeightDp))
+                    : availableHeight;
             panel.measure(MeasureSpec.makeMeasureSpec(Math.max(0, Math.min(w - 2 * m, dpi(maxWidthDp))), MeasureSpec.AT_MOST),
-                    MeasureSpec.makeMeasureSpec(Math.max(0, h - 2 * m), MeasureSpec.AT_MOST));
+                    MeasureSpec.makeMeasureSpec(panelMaxHeight, MeasureSpec.AT_MOST));
         }
 
         @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
